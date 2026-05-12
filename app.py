@@ -470,8 +470,8 @@ def main():
         ["Formulaire RSVP", "QR Code", "Dashboard Admin"]
     )
     
-    if choix == "Formulaire RSVP":
-        show_rsvp_form()
+    #if choix == "Formulaire RSVP":
+    show_rsvp_form()
     #elif choix == "QR Code":
     #    show_qr_code()
     #elif choix == "Dashboard Admin":
