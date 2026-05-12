@@ -98,7 +98,7 @@ def connect_to_google_sheet():
 
     client = gspread.authorize(creds)
 
-    sheet = client.open("Wedding RSVPs").sheet1
+    sheet = client.open("Wedding_RSVP").sheet1
 
     return sheet
 
