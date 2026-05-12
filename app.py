@@ -12,6 +12,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Configuration de la page
 st.set_page_config(
@@ -83,26 +85,70 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+def connect_to_google_sheet():
+    scope = [
+        "https://spreadsheets.google.com/feeds",
+        "https://www.googleapis.com/auth/drive"
+    ]
+
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(
+        st.secrets["gcp_service_account"],
+        scope
+    )
+
+    client = gspread.authorize(creds)
+
+    sheet = client.open("Wedding RSVPs").sheet1
+
+    return sheet
 
 def load_responses():
-    """Charge les réponses depuis le fichier CSV"""
-    if os.path.exists(DATA_FILE):
-        return pd.read_csv(DATA_FILE)
-    return pd.DataFrame(columns=[
-        "nom", "prenom", "email", "presence", "nb_personnes",
-        "vegetarien", "vegan", "sans_gluten", "autres_regimes",
-        "transport", "besoin_hebergement", "nb_chambres",
-        "message", "date_reponse"
-    ])
+    try:
+        sheet = connect_to_google_sheet()
+
+        data = sheet.get_all_records()
+
+        if data:
+            return pd.DataFrame(data)
+
+        return pd.DataFrame(columns=[
+            "nom", "prenom", "email", "presence", "nb_personnes",
+            "vegetarien", "vegan", "sans_gluten", "autres_regimes",
+            "transport", "besoin_hebergement", "nb_chambres",
+            "message", "date_reponse"
+        ])
+
+    except Exception as e:
+        st.error(f"Erreur chargement Google Sheets : {e}")
+
+        return pd.DataFrame()
 
 
 def save_response(data):
-    """Sauvegarde une nouvelle réponse"""
-    df = load_responses()
-    new_row = pd.DataFrame([data])
-    df = pd.concat([df, new_row], ignore_index=True)
-    df.to_csv(DATA_FILE, index=False)
-    return df
+    try:
+        sheet = connect_to_google_sheet()
+
+        row = [
+            data["nom"],
+            data["prenom"],
+            data["email"],
+            data["presence"],
+            data["nb_personnes"],
+            data["vegetarien"],
+            data["vegan"],
+            data["sans_gluten"],
+            data["autres_regimes"],
+            data["transport"],
+            data["besoin_hebergement"],
+            data["nb_chambres"],
+            data["message"],
+            data["date_reponse"]
+        ]
+
+        sheet.append_row(row)
+
+    except Exception as e:
+        st.error(f"Erreur sauvegarde : {e}")
 
 
 def generate_qr_code(url):
@@ -243,8 +289,9 @@ def show_qr_code():
     st.markdown('<p class="title">💍 Scannez pour répondre</p>', unsafe_allow_html=True)
     
     # URL à personnaliser - mettre l'URL de déploiement
-    url = "http://localhost:8501"
-    
+    #url = "http://localhost:8501"
+    url = "https://wedding-rsvp-ivk7afabwnrhbtvm9nbs3z.streamlit.app/"
+
     qr_buffer = generate_qr_code(url)
     
     st.markdown('<div class="qr-container">', unsafe_allow_html=True)
@@ -254,6 +301,11 @@ def show_qr_code():
 
 
 def show_dashboard():
+    password = st.text_input("Mot de passe admin", type="password")
+
+    if password != st.secrets["admin_password"]:
+        st.warning("Accès refusé")
+        return
     """Affiche le dashboard administrateur"""
     st.set_page_config(page_title="Dashboard Mariage", layout="wide")
     
