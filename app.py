@@ -472,10 +472,10 @@ def main():
     
     if choix == "Formulaire RSVP":
         show_rsvp_form()
-    elif choix == "QR Code":
-        show_qr_code()
-    elif choix == "Dashboard Admin":
-        show_dashboard()
+    #elif choix == "QR Code":
+    #    show_qr_code()
+    #elif choix == "Dashboard Admin":
+    #    show_dashboard()
 
 
 if __name__ == "__main__":
