@@ -13,6 +13,7 @@ from datetime import datetime
 import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 # Configuration de la page
 st.set_page_config(
@@ -21,9 +22,6 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="collapsed"
 )
-
-# Fichier de stockage des réponses
-DATA_FILE = "responses.csv"
 
 # Style CSS personnalisé
 st.markdown("""
@@ -50,6 +48,30 @@ st.markdown("""
 }
 
 /* Titres */
+.stApp::before {
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("https://www.transparenttextures.com/patterns/floral-white.png");
+    opacity:0.15;
+    pointer-events:none;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}            
+
 .title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 5rem !important;
@@ -61,7 +83,7 @@ st.markdown("""
 }
 
 .subtitle {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     text-align: center;
     color: #7b6d6d;
     font-size: 1.2rem;
@@ -69,6 +91,21 @@ st.markdown("""
 }
 
 /* Cartes */
+.section-card {
+    animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+            
 .section-card {
     background: rgba(255,255,255,0.88);
     backdrop-filter: blur(8px);
@@ -100,7 +137,7 @@ st.markdown("""
 /* Radio + checkbox */
 .stRadio label,
 .stCheckbox label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 /* Bouton */
@@ -229,6 +266,25 @@ def show_rsvp_form():
         </div>
     </div>
     """, unsafe_allow_html=True)
+    mariage = datetime(2027, 7, 3)
+    today = datetime.now()
+
+    jours_restants = (mariage - today).days
+
+    st.markdown(f"""
+    <div style="
+        text-align:center;
+        padding:1.5rem;
+        margin-bottom:2rem;
+        background: rgba(255,255,255,0.82);
+        border-radius:20px;
+        font-family:'Cormorant Garamond', serif;
+        color:#7b6d6d;
+        font-size:2rem;
+    ">
+    ⏳ Plus que <strong>{jours_restants}</strong> jours avant le mariage
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("""
     <div style="
         background: rgba(255,255,255,0.88);
@@ -291,6 +347,12 @@ def show_rsvp_form():
     <h3>📍 Château de Bois Charmant, 15 Bois Charmant, 17380 Les Nouillers, France</h3>
     </div>
     """, unsafe_allow_html=True)
+
+    st.components.v1.iframe(
+        "https://www.google.com/maps/place/Ch%C3%A2teau+de+Bois+Charmant,+17380+Les+Nouillers,+France/data=!4m2!3m1!1s0x480121b3da42c191:0xc6fd25dc4990f6bd?sa=X&ved=1t:242&ictx=111",
+        height=400
+    )
+
     st.markdown("---")
     
     st.markdown("## ✨ Vos coordonnées")
