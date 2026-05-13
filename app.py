@@ -1,6 +1,5 @@
 """
 Wedding RSVP Application
-Un QR code élégant qui renvoie vers un formulaire de confirmation de présence.
 """
 
 import streamlit as st
@@ -153,31 +152,10 @@ def save_response(data):
     except Exception as e:
         st.error(f"Erreur sauvegarde : {e}")
 
-
-def generate_qr_code(url):
-    """Génère un QR code à partir d'une URL"""
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(url)
-    qr.make(fit=True)
-    
-    img = qr.make_image(fill_color="#2c3e50", back_color="white")
-    
-    # Convertir en bytes pour Streamlit
-    buf = io.BytesIO()
-    img.save(buf, format='PNG')
-    buf.seek(0)
-    return buf
-
-
 def show_rsvp_form():
     """Affiche le formulaire de RSVP"""
     st.markdown('<p class="title">💍 Hugo & Sonate</p>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">Bienvenu a notre mariage !\r\nNous avons vraiment hâte de vous accueillir !\r\nSachez que votre présence sera notre plus magnifique cadeau, ainsi les machines a café, services d argenteries, laves veisselle et autre classiquies de mariages auront du mal a voyager avec nous dans nos periples.\r\nSi vous souhaiter tout de meme nous gater, une urne sera presente sur le lieux de reception, ca contribuera a nos projets pour ce nouveau chapitre</p>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle">Bienvenue a notre mariage !\r\nNous avons vraiment hâte de vous accueillir !\r\nSachez que votre présence sera notre plus magnifique cadeau, ainsi les machines a café, services d argenteries, laves vesselle et autre classiques de mariages auront du mal a voyager avec nous dans nos periples.\r\nSi vous souhaiter tout de meme nous gater, une urne sera presente sur le lieux de reception, ca contribuera a nos projets pour ce nouveau chapitre</p>', unsafe_allow_html=True)
     
     st.markdown("### 📅 3 Juillet 2027")
     st.markdown("### 📍 Château de bois Charmant")
@@ -280,9 +258,9 @@ def show_rsvp_form():
                     "presence": presence,
                     "jours_presents": ", ".join(jours_presents),
                     "transport": transport,
-                    "arrivee_train": arrivee_train,
+                    "arrivee_train": "Oui" if transport == "Train" else "Non",
                     "commentaire_train": commentaire_train,
-                    "camping": camping,
+                    "camping": besoin_hebergement,
                     "materiel_camping": materiel_camping,
                     "vegetarien": vegetarien,
                     "vegan": vegan,
