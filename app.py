@@ -282,8 +282,7 @@ def show_rsvp_form():
     """, unsafe_allow_html=True)
     st.markdown("---")
     
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">✨ Vos coordonnées</div>', unsafe_allow_html=True)
+    st.markdown("## ✨ Vos coordonnées")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -293,8 +292,7 @@ def show_rsvp_form():
     
     email = st.text_input("Email *", placeholder="votre@email.com")
     telephone = st.text_input("Téléphone (optionnel)", placeholder="...")
-    st.markdown('</div>', unsafe_allow_html=True)
-
+    
     st.markdown("---")
     st.markdown("## 🎉 Votre présence")
     
