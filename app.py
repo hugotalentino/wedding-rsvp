@@ -318,6 +318,7 @@ def show_rsvp_form():
     vendredi = st.checkbox("Vendredi (préparation, répétition, dîner)")
     samedi = st.checkbox("Samedi (mariage 💍)")
     dimanche = st.checkbox("Dimanche (brunch, rangement)")
+    dimanche = st.checkbox("Avant le vendredi")
 
     jours_selectionnes = []
 
