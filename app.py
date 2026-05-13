@@ -329,6 +329,9 @@ def show_rsvp_form():
 
     if dimanche:
         jours_selectionnes.append("Dimanche")
+    
+    if dimanche:
+        jours_selectionnes.append("Avant le vendredi")
 
     st.markdown("---")
     st.markdown("## 🍽️ Allergie")
@@ -383,7 +386,7 @@ def show_rsvp_form():
 
     if besoin_hebergement == "Oui, au camping du chateau":
         materiel_camping = st.text_area(
-            "Matériel de camping manquant",
+            "Matériel de camping qu'il te manquerait",
             placeholder="Ex: j'ai besoin d'une tente, matelas, sac de couchage..."
         )
 
@@ -392,10 +395,50 @@ def show_rsvp_form():
     
     message = st.text_area(
         "Un petit mot pour les mariés ?",
-        placeholder="Félicitations, vœux, anecdote..."
+        placeholder="Chanson à proposer, vœux, anecdote, blague..."
     )
     
-    #submitted = st.form_submit_button("💌 Envoyer ma réponse", type="primary")
+    st.markdown("""
+    <div style="
+        background: rgba(255,255,255,0.88);
+        backdrop-filter: blur(6px);
+        padding: 2rem;
+        border-radius: 24px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        border: 1px solid rgba(255,255,255,0.4);
+    ">
+
+    <div style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2rem;
+        color: #b76e79;
+        margin-bottom: 1rem;
+    ">
+        ✨ Dress code ✨
+    </div>
+
+    <p style="
+        font-size: 1.1rem;
+        color: #5f5555;
+        line-height: 1.8;
+        font-family: 'Montserrat', sans-serif;
+    ">
+
+    Pour célébrer cette journée dans toute sa joie et sa lumière,  
+    nous vous invitons à venir dans des tenues <strong>colorées, lumineuses et festives</strong>. 🌸🌿🌞
+
+    <br><br>
+
+    Les tenues entièrement noires seront donc à éviter afin de conserver l’ambiance chaleureuse, vivante et pleine de couleurs que nous imaginons pour ce week-end si spécial ✨
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
     submitted = st.button("💌 Envoyer ma réponse", type="primary")
 
     if submitted:
