@@ -227,9 +227,6 @@ def show_rsvp_form():
         ">
             3 juillet 2027
         </div>
-        <div class="subtitle" style="margin-top:1rem;">
-            Un week-end de célébration, d’amour et de souvenirs inoubliables ✨
-        </div>
     </div>
     """, unsafe_allow_html=True)
     st.markdown("""
@@ -291,7 +288,6 @@ def show_rsvp_form():
         text-align:center;
         margin-bottom:2rem;
     ">
-    <h3>📅 3 juillet 2027</h3>
     <h3>📍 Château de Bois Charmant, 15 Bois Charmant, 17380 Les Nouillers, France</h3>
     </div>
     """, unsafe_allow_html=True)
