@@ -181,12 +181,23 @@ def show_rsvp_form():
             ["Oui, avec plaisir !", "Non, je ne pourrai pas venir"],
             horizontal=True
         )
+        st.markdown("---")
         st.markdown("## 📅 Quels jours serez-vous présents ?")
 
-        jours_presents = st.multiselect(
-            "Sélectionnez les jours",
-            ["Vendredi (préparation, répétition, dîner)", "Samedi (mariage 💍)", "Dimanche (brunch, rangement)"]
-        )
+        vendredi = st.checkbox("Vendredi (préparation, répétition, dîner)")
+        samedi = st.checkbox("Samedi (mariage 💍)")
+        dimanche = st.checkbox("Dimanche (brunch, rangement)")
+
+        jours_selectionnes = []
+
+        if vendredi:
+            jours_selectionnes.append("Vendredi")
+
+        if samedi:
+            jours_selectionnes.append("Samedi")
+
+        if dimanche:
+            jours_selectionnes.append("Dimanche")
 
         st.markdown("---")
         st.markdown("## 🍽️ Restrictions alimentaires")
@@ -206,7 +217,7 @@ def show_rsvp_form():
         
         st.markdown("---")
         st.markdown("## 🚗 Logistique")
-        
+
         transport = st.selectbox(
             "Comment viendrez-vous ?",
             ["Voiture", "Train", "Covoiturage", "Autre"]
@@ -215,13 +226,30 @@ def show_rsvp_form():
         commentaire_train = ""
 
         if transport == "Train":
-            commentaire_train = st.text_area(
-                "Heure + gare d'arrivée (important)",
-                placeholder="Ex: Gare de Surgere 15h30"
+
+            st.markdown("### 🚆 Arrivée en train")
+
+            jour_arrivee = st.selectbox(
+                "Quel jour arrivez-vous ?",
+                ["Vendredi", "Samedi"]
             )
 
-            st.warning("⚠️ Nous ne pourrons pas venir chercher les invités en gare. Merci de privilégier une arrivée le vendredi.")
+            heure_arrivee = st.text_input(
+                "Heure d'arrivée",
+                placeholder="Ex : 15h42"
+            )
 
+            gare_arrivee = st.text_input(
+                "Gare d'arrivée",
+                placeholder="Ex : Gare de Surgères"
+            )
+
+            commentaire_train = f"{jour_arrivee} - {heure_arrivee} - {gare_arrivee}"
+
+            st.warning(
+                "⚠️ Nous ne pourrons malheureusement pas venir chercher des invités à la gare le jour du mariage. Nous vous recommandons fortement une arrivée le vendredi afin de faciliter l'organisation et les déplacements."
+            )
+        
         besoin_hebergement = st.radio(
             "Dormez vous au chateau ?",
             ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon vanne", "Oui, les mariés m'on assigné une chambre/cabane"],
@@ -256,7 +284,7 @@ def show_rsvp_form():
                     "email": email,
                     "telephone": telephone,
                     "presence": presence,
-                    "jours_presents": ", ".join(jours_presents),
+                    "jours_presents": ", ".join(jours_selectionnes),
                     "transport": transport,
                     "arrivee_train": "Oui" if transport == "Train" else "Non",
                     "commentaire_train": commentaire_train,
