@@ -430,10 +430,6 @@ def show_rsvp_form():
     Pour célébrer cette journée dans toute sa joie et sa lumière,  
     nous vous invitons à venir dans des tenues <strong>colorées, lumineuses et festives</strong>. 🌸🌿🌞
 
-    <br><br>
-
-    Les tenues entièrement noires seront donc à éviter afin de conserver l’ambiance chaleureuse, vivante et pleine de couleurs que nous imaginons pour ce week-end si spécial ✨
-
     </p>
 
     </div>
