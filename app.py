@@ -219,7 +219,6 @@ def show_rsvp_form():
     st.markdown("""
     <div style="text-align:center; padding-top:1rem; padding-bottom:2rem;">
         <div class="title">Hugo & Sonate</div>
-
         <div style="
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
@@ -228,7 +227,6 @@ def show_rsvp_form():
         ">
             3 juillet 2027
         </div>
-
         <div class="subtitle" style="margin-top:1rem;">
             Un week-end de célébration, d’amour et de souvenirs inoubliables ✨
         </div>
