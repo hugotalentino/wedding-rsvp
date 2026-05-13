@@ -178,7 +178,7 @@ def load_responses():
         return pd.DataFrame(columns=[
             "nom", "prenom", "email", "telephone", "presence", "jours_presents",
             "transport", "arrivee_train", "commentaire_train", "camping", "materiel_camping",
-            "vegetarien", "vegan", "sans_gluten", "autres_regimes",
+            "vegetarien", "vegan", "sans_gluten", "allergie",
             "message", "date_reponse"
         ])
 
@@ -204,7 +204,7 @@ def save_response(data):
             data["commentaire_train"],
             data["camping"],
             data["materiel_camping"],
-            data["autres_regimes"],
+            data["allergie"],
             data["message"],
             data["date_reponse"]
         ]
@@ -337,7 +337,7 @@ def show_rsvp_form():
     st.markdown("---")
     st.markdown("## 🍽️ Allergie")
 
-    autres_regimes = st.text_area(
+    allergie = st.text_area(
         "(Allergie aux parisiens, intolérance a l'architecture medievale, etc...)",
         placeholder="Précisez si nécessaire..."
     )
@@ -454,7 +454,7 @@ def show_rsvp_form():
                 "commentaire_train": commentaire_train,
                 "camping": besoin_hebergement,
                 "materiel_camping": materiel_camping,
-                "autres_regimes": autres_regimes,
+                "allergie": allergie,
                 "message": message,
                 "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
             }
