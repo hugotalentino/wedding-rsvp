@@ -436,6 +436,19 @@ def show_rsvp_form():
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <div style="text-align:center; margin-top:1rem;">
+
+    <span style="font-size:2rem;">🌸</span>
+    <span style="font-size:2rem;">🌿</span>
+    <span style="font-size:2rem;">🌞</span>
+    <span style="font-size:2rem;">🧡</span>
+    <span style="font-size:2rem;">💛</span>
+    <span style="font-size:2rem;">🌺</span>
+
+    </div>
+    """, unsafe_allow_html=True)
+
     submitted = st.button("💌 Envoyer ma réponse", type="primary")
 
     if submitted:
