@@ -28,59 +28,124 @@ DATA_FILE = "responses.csv"
 # Style CSS personnalisé
 st.markdown("""
 <style>
-    .main {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        min-height: 100vh;
-    }
-    .stApp {
-        background: transparent;
-    }
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
+
+/* Fond général */
+.stApp {
+    background:
+        linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Container principal */
+.main .block-container {
+    max-width: 850px;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Titres */
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem !important;
+    font-weight: 600;
+    text-align: center;
+    color: #3e2f2f;
+    margin-bottom: 0rem !important;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #7b6d6d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Cartes */
+.section-card {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(8px);
+    padding: 2rem;
+    border-radius: 24px;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Titres sections */
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: #4b3b3b;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Inputs */
+.stTextInput input,
+.stTextArea textarea,
+.stSelectbox div[data-baseweb="select"] {
+    border-radius: 14px !important;
+    border: 1px solid #e3dede !important;
+    padding: 0.7rem !important;
+    background-color: rgba(255,255,255,0.9) !important;
+}
+
+/* Radio + checkbox */
+.stRadio label,
+.stCheckbox label {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Bouton */
+.stButton > button {
+    width: 100%;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #b76e79, #d9a5b3);
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(183,110,121,0.35);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(183,110,121,0.45);
+}
+
+/* Séparateurs */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d8c3c8, transparent);
+    margin: 2rem 0;
+}
+
+/* Messages */
+.stSuccess {
+    border-radius: 18px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
     .title {
-        font-family: 'Georgia', serif;
-        font-size: 3rem !important;
-        color: #2c3e50 !important;
-        text-align: center;
-        margin-bottom: 2rem !important;
+        font-size: 3.2rem !important;
     }
-    .subtitle {
-        font-family: 'Georgia', serif;
-        font-size: 1.5rem !important;
-        color: #7f8c8d !important;
-        text-align: center;
-        margin-bottom: 2rem !important;
+
+    .section-card {
+        padding: 1.3rem;
     }
-    .form-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
-    .success-message {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        text-align: center;
-        font-size: 1.2rem;
-    }
-    .qr-container {
-        text-align: center;
-        padding: 2rem;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
-    .stat-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    .heart {
-        color: #e74c3c;
-        font-size: 2rem;
-    }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -217,8 +282,8 @@ def show_rsvp_form():
     """, unsafe_allow_html=True)
     st.markdown("---")
     
-    #with st.form("rsvp_form", clear_on_submit=True):
-    st.markdown("## ✨ Vos coordonnées")
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">✨ Vos coordonnées</div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     with col1:
@@ -228,7 +293,8 @@ def show_rsvp_form():
     
     email = st.text_input("Email *", placeholder="votre@email.com")
     telephone = st.text_input("Téléphone (optionnel)", placeholder="...")
-    
+    st.markdown('</div>', unsafe_allow_html=True)
+
     st.markdown("---")
     st.markdown("## 🎉 Votre présence")
     
@@ -259,7 +325,7 @@ def show_rsvp_form():
     st.markdown("## 🍽️ Allergie")
 
     autres_regimes = st.text_area(
-        "Allergie aux parisiens, intolérance a l'architecture medievale, etc...)",
+        "(Allergie aux parisiens, intolérance a l'architecture medievale, etc...)",
         placeholder="Précisez si nécessaire..."
     )
     
