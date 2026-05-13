@@ -282,7 +282,7 @@ def show_rsvp_form():
         color:#7b6d6d;
         font-size:2rem;
     ">
-    ⏳ Plus que <strong>{jours_restants}</strong> jours avant le mariage
+    ⏳ Plus que <strong>{jours_restants}</strong> jours
     </div>
     """, unsafe_allow_html=True)
     st.markdown("""
@@ -349,7 +349,7 @@ def show_rsvp_form():
     """, unsafe_allow_html=True)
 
     st.components.v1.iframe(
-        "https://www.google.com/maps/place/Ch%C3%A2teau+de+Bois+Charmant,+17380+Les+Nouillers,+France/data=!4m2!3m1!1s0x480121b3da42c191:0xc6fd25dc4990f6bd?sa=X&ved=1t:242&ictx=111",
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2775.1292287916162!2d-0.6670321000000001!3d45.9287169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4801214f9d7cf4c9%3A0x5bb861d2298e29b1!2sCh%C3%A2teau%20de%20bois%20charmant%20-%20Chambres%20d&#39;h%C3%B4tes!5e0!3m2!1sfr!2sca!4v1778706989901!5m2!1sfr!2sca",
         height=400
     )
 
