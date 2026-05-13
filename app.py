@@ -152,10 +152,69 @@ def save_response(data):
 def show_rsvp_form():
     """Affiche le formulaire de RSVP"""
     st.markdown('<p class="title">💍 Hugo & Sonate</p>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">Bienvenue a notre mariage !\r\nNous avons vraiment hâte de vous accueillir !\r\nSachez que votre présence sera notre plus magnifique cadeau, ainsi les machines a café, services d argenteries, laves vesselle et autre classiques de mariages auront du mal a voyager avec nous dans nos periples.\r\nSi vous souhaiter tout de meme nous gater, une urne sera presente sur le lieux de reception, ca contribuera a nos projets pour ce nouveau chapitre</p>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="
+        background: rgba(255,255,255,0.88);
+        padding: 2rem;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        text-align: center;
+        line-height: 1.8;
+    ">
+
+    <h2 style="
+        font-family: Georgia, serif;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    ">
+    ✨ Bienvenue à notre mariage ✨
+    </h2>
+
+    <p style="
+        font-size: 1.1rem;
+        color: #555;
+    ">
+    Nous avons immensément hâte de célébrer ce moment unique avec vous 💍
+    </p>
+
+    <p style="
+        font-size: 1rem;
+        color: #666;
+        margin-top: 1.5rem;
+    ">
+    Votre présence sera, de loin, le plus beau des cadeaux. ❤️
+    </p>
+
+    <p style="
+        font-size: 1rem;
+        color: #666;
+    ">
+    Comme nous aimons voyager léger dans nos aventures à venir, 
+    les machines à café, services d’argenterie et autres grands classiques des listes de mariage 
+    risqueraient d’avoir du mal à nous suivre dans nos périples.
+    </p>
+
+    <p style="
+        font-size: 1rem;
+        color: #666;
+    ">
+    Si vous souhaitez malgré tout nous gâter, une urne sera présente sur le lieu de réception. 
+    Elle contribuera à nos futurs projets et à ce nouveau chapitre de notre vie ✨
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
     
-    st.markdown("### 📅 3 Juillet 2027")
-    st.markdown("### 📍 Château de bois Charmant")
+    st.markdown("""
+    <div style="
+        text-align:center;
+        margin-bottom:2rem;
+    ">
+    <h3>📅 3 juillet 2027</h3>
+    <h3>📍 Château de Bois Charmant, 15 Bois Charmant, 17380 Les Nouillers, France</h3>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("---")
     
     #with st.form("rsvp_form", clear_on_submit=True):
