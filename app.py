@@ -161,150 +161,151 @@ def show_rsvp_form():
     st.markdown("### 📍 Château de bois Charmant")
     st.markdown("---")
     
-    with st.form("rsvp_form", clear_on_submit=True):
-        st.markdown("## ✨ Vos coordonnées")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            nom = st.text_input("Nom *", placeholder="Votre nom")
-        with col2:
-            prenom = st.text_input("Prénom *", placeholder="Votre prénom")
-        
-        email = st.text_input("Email *", placeholder="votre@email.com")
-        telephone = st.text_input("Téléphone (optionnel)", placeholder="...")
-        
-        st.markdown("---")
-        st.markdown("## 🎉 Votre présence")
-        
-        presence = st.radio(
-            "Seriez-vous présent(e) à notre mariage ? *",
-            ["Oui, avec plaisir !", "Non, je ne pourrai pas venir"],
-            horizontal=True
-        )
-        st.markdown("---")
-        st.markdown("## 📅 Quels jours serez-vous présents ?")
+    #with st.form("rsvp_form", clear_on_submit=True):
+    st.markdown("## ✨ Vos coordonnées")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        nom = st.text_input("Nom *", placeholder="Votre nom")
+    with col2:
+        prenom = st.text_input("Prénom *", placeholder="Votre prénom")
+    
+    email = st.text_input("Email *", placeholder="votre@email.com")
+    telephone = st.text_input("Téléphone (optionnel)", placeholder="...")
+    
+    st.markdown("---")
+    st.markdown("## 🎉 Votre présence")
+    
+    presence = st.radio(
+        "Seriez-vous présent(e) à notre mariage ? *",
+        ["Oui, avec plaisir !", "Non, je ne pourrai pas venir"],
+        horizontal=True
+    )
+    st.markdown("---")
+    st.markdown("## 📅 Quels jours serez-vous présents ?")
 
-        vendredi = st.checkbox("Vendredi (préparation, répétition, dîner)")
-        samedi = st.checkbox("Samedi (mariage 💍)")
-        dimanche = st.checkbox("Dimanche (brunch, rangement)")
+    vendredi = st.checkbox("Vendredi (préparation, répétition, dîner)")
+    samedi = st.checkbox("Samedi (mariage 💍)")
+    dimanche = st.checkbox("Dimanche (brunch, rangement)")
 
-        jours_selectionnes = []
+    jours_selectionnes = []
 
-        if vendredi:
-            jours_selectionnes.append("Vendredi")
+    if vendredi:
+        jours_selectionnes.append("Vendredi")
 
-        if samedi:
-            jours_selectionnes.append("Samedi")
+    if samedi:
+        jours_selectionnes.append("Samedi")
 
-        if dimanche:
-            jours_selectionnes.append("Dimanche")
+    if dimanche:
+        jours_selectionnes.append("Dimanche")
 
-        st.markdown("---")
-        st.markdown("## 🍽️ Restrictions alimentaires")
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            vegetarien = st.checkbox("Végétarien")
-        with col2:
-            vegan = st.checkbox("Végan")
-        with col3:
-            sans_gluten = st.checkbox("Sans gluten")
-        
-        autres_regimes = st.text_area(
-            "Autres restrictions (allergies, intolérances, etc.)",
-            placeholder="Précisez si nécessaire..."
-        )
-        
-        st.markdown("---")
-        st.markdown("## 🚗 Logistique")
+    st.markdown("---")
+    st.markdown("## 🍽️ Restrictions alimentaires")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        vegetarien = st.checkbox("Végétarien")
+    with col2:
+        vegan = st.checkbox("Végan")
+    with col3:
+        sans_gluten = st.checkbox("Sans gluten")
+    
+    autres_regimes = st.text_area(
+        "Autres restrictions (allergies, intolérances, etc.)",
+        placeholder="Précisez si nécessaire..."
+    )
+    
+    st.markdown("---")
+    st.markdown("## 🚗 Logistique")
 
-        transport = st.selectbox(
-            "Comment viendrez-vous ?",
-            ["Voiture", "Train", "Covoiturage", "Autre"]
-        )
+    transport = st.selectbox(
+        "Comment viendrez-vous ?",
+        ["Voiture", "Train", "Covoiturage", "Autre"]
+    )
 
-        commentaire_train = ""
+    commentaire_train = ""
 
-        if transport == "Train":
+    if transport == "Train":
 
-            st.markdown("### 🚆 Arrivée en train")
+        st.markdown("### 🚆 Arrivée en train")
 
-            jour_arrivee = st.selectbox(
-                "Quel jour arrivez-vous ?",
-                ["Vendredi", "Samedi"]
-            )
-
-            heure_arrivee = st.text_input(
-                "Heure d'arrivée",
-                placeholder="Ex : 15h42"
-            )
-
-            gare_arrivee = st.text_input(
-                "Gare d'arrivée",
-                placeholder="Ex : Gare de Surgères"
-            )
-
-            commentaire_train = f"{jour_arrivee} - {heure_arrivee} - {gare_arrivee}"
-
-            st.warning(
-                "⚠️ Nous ne pourrons malheureusement pas venir chercher des invités à la gare le jour du mariage. Nous vous recommandons fortement une arrivée le vendredi afin de faciliter l'organisation et les déplacements."
-            )
-        
-        besoin_hebergement = st.radio(
-            "Dormez vous au chateau ?",
-            ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon vanne", "Oui, les mariés m'on assigné une chambre/cabane"],
-            horizontal=True
+        jour_arrivee = st.selectbox(
+            "Quel jour arrivez-vous ?",
+            ["Vendredi", "Samedi"]
         )
 
-        materiel_camping = ""
-
-        if besoin_hebergement == "Oui, au camping du chateau":
-            materiel_camping = st.text_area(
-                "Matériel de camping manquant",
-                placeholder="Ex: j'ai besoin d'une tente, matelas, sac de couchage..."
-            )
-
-        st.markdown("---")
-        st.markdown("## 💬 Message")
-        
-        message = st.text_area(
-            "Un petit mot pour les mariés ?",
-            placeholder="Félicitations, vœux, anecdote..."
+        heure_arrivee = st.text_input(
+            "Heure d'arrivée",
+            placeholder="Ex : 15h42"
         )
-        
-        submitted = st.form_submit_button("💌 Envoyer ma réponse", type="primary")
-        
-        if submitted:
-            if not nom or not prenom or not email:
-                st.error("Merci de remplir tous les champs obligatoires (*)")
-            else:
-                data = {
-                    "nom": nom,
-                    "prenom": prenom,
-                    "email": email,
-                    "telephone": telephone,
-                    "presence": presence,
-                    "jours_presents": ", ".join(jours_selectionnes),
-                    "transport": transport,
-                    "arrivee_train": "Oui" if transport == "Train" else "Non",
-                    "commentaire_train": commentaire_train,
-                    "camping": besoin_hebergement,
-                    "materiel_camping": materiel_camping,
-                    "vegetarien": vegetarien,
-                    "vegan": vegan,
-                    "sans_gluten": sans_gluten,
-                    "autres_regimes": autres_regimes,
-                    "message": message,
-                    "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
-                }
-                save_response(data)
-                st.markdown("""
-                <div class="success-message">
-                    <h2>💕 Merci pour votre réponse !</h2>
-                    <p>Nous avons hâte de vous voir à notre mariage !</p>
-                </div>
-                """, unsafe_allow_html=True)
-                st.balloons()
+
+        gare_arrivee = st.text_input(
+            "Gare d'arrivée",
+            placeholder="Ex : Gare de Surgères"
+        )
+
+        commentaire_train = f"{jour_arrivee} - {heure_arrivee} - {gare_arrivee}"
+
+        st.warning(
+            "⚠️ Nous ne pourrons malheureusement pas venir chercher des invités à la gare le jour du mariage. Nous vous recommandons fortement une arrivée le vendredi afin de faciliter l'organisation et les déplacements."
+        )
+    
+    besoin_hebergement = st.radio(
+        "Dormez vous au chateau ?",
+        ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon vanne", "Oui, les mariés m'on assigné une chambre/cabane"],
+        horizontal=True
+    )
+
+    materiel_camping = ""
+
+    if besoin_hebergement == "Oui, au camping du chateau":
+        materiel_camping = st.text_area(
+            "Matériel de camping manquant",
+            placeholder="Ex: j'ai besoin d'une tente, matelas, sac de couchage..."
+        )
+
+    st.markdown("---")
+    st.markdown("## 💬 Message")
+    
+    message = st.text_area(
+        "Un petit mot pour les mariés ?",
+        placeholder="Félicitations, vœux, anecdote..."
+    )
+    
+    #submitted = st.form_submit_button("💌 Envoyer ma réponse", type="primary")
+    submitted = st.button("💌 Envoyer ma réponse", type="primary")
+
+    if submitted:
+        if not nom or not prenom or not email:
+            st.error("Merci de remplir tous les champs obligatoires (*)")
+        else:
+            data = {
+                "nom": nom,
+                "prenom": prenom,
+                "email": email,
+                "telephone": telephone,
+                "presence": presence,
+                "jours_presents": ", ".join(jours_selectionnes),
+                "transport": transport,
+                "arrivee_train": "Oui" if transport == "Train" else "Non",
+                "commentaire_train": commentaire_train,
+                "camping": besoin_hebergement,
+                "materiel_camping": materiel_camping,
+                "vegetarien": vegetarien,
+                "vegan": vegan,
+                "sans_gluten": sans_gluten,
+                "autres_regimes": autres_regimes,
+                "message": message,
+                "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
+            }
+            save_response(data)
+            st.markdown("""
+            <div class="success-message">
+                <h2>💕 Merci pour votre réponse !</h2>
+                <p>Nous avons hâte de vous voir à notre mariage !</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.balloons()
 
 
 
