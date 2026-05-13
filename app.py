@@ -112,9 +112,9 @@ def load_responses():
             return pd.DataFrame(data)
 
         return pd.DataFrame(columns=[
-            "nom", "prenom", "email", "presence", "nb_personnes",
+            "nom", "prenom", "email", "telephone", "presence", "jours_presents",
+            "transport", "arrivee_train", "commentaire_train", "camping", "materiel_camping",
             "vegetarien", "vegan", "sans_gluten", "autres_regimes",
-            "transport", "besoin_hebergement", "nb_chambres",
             "message", "date_reponse"
         ])
 
@@ -132,15 +132,18 @@ def save_response(data):
             data["nom"],
             data["prenom"],
             data["email"],
+            data["telephone"],
             data["presence"],
-            data["nb_personnes"],
+            data["jours_presents"],
+            data["transport"],
+            data["arrivee_train"],
+            data["commentaire_train"],
+            data["camping"],
+            data["materiel_camping"],
             data["vegetarien"],
             data["vegan"],
             data["sans_gluten"],
             data["autres_regimes"],
-            data["transport"],
-            data["besoin_hebergement"],
-            data["nb_chambres"],
             data["message"],
             data["date_reponse"]
         ]
@@ -190,6 +193,7 @@ def show_rsvp_form():
             prenom = st.text_input("Prénom *", placeholder="Votre prénom")
         
         email = st.text_input("Email *", placeholder="votre@email.com")
+        telephone = st.text_input("Téléphone (optionnel)", placeholder="...")
         
         st.markdown("---")
         st.markdown("## 🎉 Votre présence")
@@ -199,14 +203,13 @@ def show_rsvp_form():
             ["Oui, avec plaisir !", "Non, je ne pourrai pas venir"],
             horizontal=True
         )
-        
-        nb_personnes = 1
-        if presence == "Oui, avec plaisir !":
-            nb_personnes = st.number_input(
-                "Nombre de personnes (vous incluse)",
-                min_value=1, max_value=5, value=1
-            )
-        
+        st.markdown("## 📅 Quels jours serez-vous présents ?")
+
+        jours_presents = st.multiselect(
+            "Sélectionnez les jours",
+            ["Vendredi (préparation, répétition, dîner)", "Samedi (mariage 💍)", "Dimanche (brunch, rangement)"]
+        )
+
         st.markdown("---")
         st.markdown("## 🍽️ Restrictions alimentaires")
         
@@ -230,20 +233,31 @@ def show_rsvp_form():
             "Comment viendrez-vous ?",
             ["Voiture", "Train", "Covoiturage", "Autre"]
         )
-        
+
+        commentaire_train = ""
+
+        if transport == "Train":
+            commentaire_train = st.text_area(
+                "Heure + gare d'arrivée (important)",
+                placeholder="Ex: Gare de Surgere 15h30"
+            )
+
+            st.warning("⚠️ Nous ne pourrons pas venir chercher les invités en gare. Merci de privilégier une arrivée le vendredi.")
+
         besoin_hebergement = st.radio(
-            "Avez-vous besoin d'un hébergement ?",
-            ["Non, je rentre chez moi", "Oui, j'ai besoin d'hébergement"],
+            "Dormez vous au chateau ?",
+            ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon vanne", "Oui, les mariés m'on assigné une chambre/cabane"],
             horizontal=True
         )
-        
-        nb_chambres = 0
-        if besoin_hebergement == "Oui, j'ai besoin d'hébergement":
-            nb_chambres = st.number_input(
-                "Nombre de chambres nécessaires",
-                min_value=1, max_value=3, value=1
+
+        materiel_camping = ""
+
+        if besoin_hebergement == "Oui, au camping du chateau":
+            materiel_camping = st.text_area(
+                "Matériel de camping manquant",
+                placeholder="Ex: j'ai besoin d'une tente, matelas, sac de couchage..."
             )
-        
+
         st.markdown("---")
         st.markdown("## 💬 Message")
         
@@ -262,15 +276,18 @@ def show_rsvp_form():
                     "nom": nom,
                     "prenom": prenom,
                     "email": email,
+                    "telephone": telephone,
                     "presence": presence,
-                    "nb_personnes": nb_personnes,
+                    "jours_presents": ", ".join(jours_presents),
+                    "transport": transport,
+                    "arrivee_train": arrivee_train,
+                    "commentaire_train": commentaire_train,
+                    "camping": camping,
+                    "materiel_camping": materiel_camping,
                     "vegetarien": vegetarien,
                     "vegan": vegan,
                     "sans_gluten": sans_gluten,
                     "autres_regimes": autres_regimes,
-                    "transport": transport,
-                    "besoin_hebergement": besoin_hebergement,
-                    "nb_chambres": nb_chambres,
                     "message": message,
                     "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
                 }
