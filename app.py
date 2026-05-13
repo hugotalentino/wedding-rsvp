@@ -335,7 +335,7 @@ def show_rsvp_form():
         jours_selectionnes.append("Avant le vendredi")
 
     st.markdown("---")
-    st.markdown("## 🍽️ Allergie")
+    st.markdown("## 🍽️ Allergies")
 
     allergie = st.text_area(
         "(Allergie aux parisiens, intolérance a l'architecture medievale, etc...)",
