@@ -168,7 +168,7 @@ def show_rsvp_form():
         color: #2c3e50;
         margin-bottom: 1rem;
     ">
-    ✨ Bienvenue à notre mariage ✨
+    ✨Bienvenue à notre mariage✨
     </h2>
 
     <p style="
