@@ -139,9 +139,6 @@ def save_response(data):
             data["commentaire_train"],
             data["camping"],
             data["materiel_camping"],
-            data["vegetarien"],
-            data["vegan"],
-            data["sans_gluten"],
             data["autres_regimes"],
             data["message"],
             data["date_reponse"]
@@ -200,18 +197,10 @@ def show_rsvp_form():
         jours_selectionnes.append("Dimanche")
 
     st.markdown("---")
-    st.markdown("## 🍽️ Restrictions alimentaires")
-    
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        vegetarien = st.checkbox("Végétarien")
-    with col2:
-        vegan = st.checkbox("Végan")
-    with col3:
-        sans_gluten = st.checkbox("Sans gluten")
-    
+    st.markdown("## 🍽️ Allergie")
+
     autres_regimes = st.text_area(
-        "Autres restrictions (allergies, intolérances, etc.)",
+        "Allergie aux parisiens, intolérance a l'architecture medievale, etc...)",
         placeholder="Précisez si nécessaire..."
     )
     
@@ -291,9 +280,6 @@ def show_rsvp_form():
                 "commentaire_train": commentaire_train,
                 "camping": besoin_hebergement,
                 "materiel_camping": materiel_camping,
-                "vegetarien": vegetarien,
-                "vegan": vegan,
-                "sans_gluten": sans_gluten,
                 "autres_regimes": autres_regimes,
                 "message": message,
                 "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
