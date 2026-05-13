@@ -216,7 +216,24 @@ def save_response(data):
 
 def show_rsvp_form():
     """Affiche le formulaire de RSVP"""
-    st.markdown('<p class="title">💍 Hugo & Sonate</p>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="text-align:center; padding-top:1rem; padding-bottom:2rem;">
+        <div class="title">Hugo & Sonate</div>
+
+        <div style="
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color:#8c6f75;
+            margin-top:-10px;
+        ">
+            3 juillet 2027
+        </div>
+
+        <div class="subtitle" style="margin-top:1rem;">
+            Un week-end de célébration, d’amour et de souvenirs inoubliables ✨
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("""
     <div style="
         background: rgba(255,255,255,0.88);
