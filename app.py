@@ -339,11 +339,11 @@ def show_rsvp_form():
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    #st.markdown('<div class="section-card">', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="section-title">
-    📍 Château de Bois Charmant, 15 Bois Charmant, 17380 Les Nouillers, France
+    📍 Château de Bois Charmant, 15 Bois Charmant
     </div>
 
     <p style="color:#7b6d6d;">
