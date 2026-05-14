@@ -343,7 +343,7 @@ def send_confirmation_email(to_email, prenom, data):
                 <td align="center">
                 <img src="https://raw.githubusercontent.com/hugotalentino/wedding-rsvp/main/banner2.jpg"
                     style="
-                        width:100%;
+                        width:65%;
                         max-width:500px;
                         border-radius:20px;
                         margin:25px 0;
