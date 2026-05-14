@@ -685,7 +685,7 @@ def show_rsvp_form():
                 "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
             }
             save_response(data)
-            send_confirmation_email(email, prenom)
+            send_confirmation_email(email, prenom, data)
             st.markdown("""
             <div class="success-message">
                 <h2>💕 Merci pour votre réponse !</h2>
