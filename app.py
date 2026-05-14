@@ -276,6 +276,15 @@ def send_confirmation_email(to_email, prenom, data):
                 Merci d’avoir répondu à notre invitation 🌺
             </p>
 
+            <img src="https://github.com/hugotalentino/wedding-rsvp/blob/main/banner2.jpg"
+                style="
+                    width:100%;
+                    max-width:500px;
+                    border-radius:20px;
+                    margin:25px 0;
+                    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+                ">
+
             <p style="font-size:18px;">
                 Bonjour <strong>{prenom}</strong>,
             </p>
