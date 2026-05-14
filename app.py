@@ -14,6 +14,9 @@ import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Configuration de la page
 st.set_page_config(
@@ -185,6 +188,51 @@ hr {
 
 </style>
 """, unsafe_allow_html=True)
+
+def send_confirmation_email(to_email, prenom):
+
+    sender_email = st.secrets["EMAIL_ADDRESS"]
+    sender_password = st.secrets["EMAIL_PASSWORD"]
+
+    subject = "💍 Confirmation RSVP - Mariage Hugo & Sonate"
+
+    body = f"""
+Bonjour {prenom} 💕
+
+Nous avons bien reçu votre réponse pour notre mariage.
+
+Merci énormément ❤️
+
+Nous avons hâte de partager ce week-end magique avec vous ✨
+
+À très vite,
+
+Hugo & Sonate
+"""
+
+    msg = MIMEMultipart()
+    msg["From"] = sender_email
+    msg["To"] = to_email
+    msg["Subject"] = subject
+
+    msg.attach(MIMEText(body, "plain"))
+
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+
+        server.login(sender_email, sender_password)
+
+        server.sendmail(
+            sender_email,
+            to_email,
+            msg.as_string()
+        )
+
+        server.quit()
+
+    except Exception as e:
+        st.error(f"Erreur email : {e}")
 
 def connect_to_google_sheet():
     scope = [
@@ -539,6 +587,7 @@ def show_rsvp_form():
                 "date_reponse": datetime.now().strftime("%Y-%m-%d %H:%M")
             }
             save_response(data)
+            send_confirmation_email(email, prenom)
             st.markdown("""
             <div class="success-message">
                 <h2>💕 Merci pour votre réponse !</h2>
