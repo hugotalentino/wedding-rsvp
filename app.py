@@ -229,7 +229,7 @@ def send_confirmation_email(to_email, prenom, data):
                 color:#7f8c8d;
                 margin-bottom:40px;
             ">
-                Merci d’avoir répondu à notre invitation ✨
+                Merci d’avoir répondu à notre invitation 🌺
             </p>
 
             <p style="font-size:18px;">
@@ -272,7 +272,7 @@ def send_confirmation_email(to_email, prenom, data):
 
             <p style="line-height:1.8;">
                 Les tenues entièrement noires sont proscrites 🖤🚫<br>
-                Venez colorés, élégants, lumineux et festifs ✨
+                Venez colorés, élégants, lumineux et festifs 🌺
             </p>
 
             <div style="
@@ -442,7 +442,7 @@ def show_rsvp_form():
         margin-bottom: 1.5rem;
         letter-spacing: 1px;
     ">
-    ✨ À LIRE ATTENTIVEMENT ✨
+    À LIRE ATTENTIVEMENT
     </h2>
 
     <p style="
@@ -458,7 +458,7 @@ def show_rsvp_form():
         color: #555;
     ">
     Afin de préparer dans les meilleures conditions le plus beau jour de notre vie,
-    nous avons besoin que vous répondiez à quelques questions ✨
+    nous avons besoin que vous répondiez à quelques questions 🌿
     </p>
 
     <div style="
@@ -490,7 +490,7 @@ def show_rsvp_form():
     ">
     Si vous souhaitez tout de même nous gâter,
     une urne de participation financière sera présente sur le lieu de réception
-    afin de contribuer à notre nouvelle aventure ✨
+    afin de contribuer à notre nouvelle aventure 🌿
     </p>
 
     </div>
@@ -517,7 +517,7 @@ def show_rsvp_form():
 
     st.markdown("---")
     
-    st.markdown("## ✨ Vos coordonnées")
+    st.markdown("## 🌿 Vos coordonnées")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -582,12 +582,12 @@ def show_rsvp_form():
 
         jour_arrivee = st.selectbox(
             "Quel jour arrivez-vous ?",
-            ["Vendredi", "Samedi"]
+            ["Vendredi", "Samedi", "Autre"]
         )
 
         heure_arrivee = st.text_input(
             "Heure d'arrivée",
-            placeholder="Ex : 15h42"
+            placeholder="Ex : Jeudi 15h42"
         )
 
         gare_arrivee = st.text_input(
@@ -603,7 +603,7 @@ def show_rsvp_form():
     
     besoin_hebergement = st.radio(
         "Dormez vous au chateau ?",
-        ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon vanne", "Oui, les mariés m'on assigné une chambre/cabane"],
+        ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon van", "Oui, les mariés m'on assigné une chambre/cabane"],
         horizontal=True
     )
 
@@ -642,7 +642,7 @@ def show_rsvp_form():
         color: #b76e79;
         margin-bottom: 1rem;
     ">
-        ✨ Dress code ✨
+        🌸 Dress code 🌸
     </div>
 
     <p style="
