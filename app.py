@@ -261,15 +261,7 @@ def send_confirmation_email(to_email, prenom, data):
 
             <p style="line-height:1.8;">
                 <strong>Date :</strong> 3 juillet 2027<br>
-                <strong>Lieu :</strong> Château de Bois Charmant
-            </p>
-
-            <p style="line-height:1.8;">
-                Nous vous recommandons fortement une arrivée dès le vendredi afin de profiter pleinement du week-end et de faciliter l’organisation.
-            </p>
-
-            <p style="line-height:1.8;">
-                ⚠️ Nous ne pourrons malheureusement pas assurer les trajets depuis les gares le samedi.
+                <strong>Lieu :</strong> Château de Bois Charmant, 17380 Les Nouillers, France
             </p>
 
             <hr style="margin:30px 0; border:none; border-top:1px solid #eee;">
@@ -433,53 +425,72 @@ def show_rsvp_form():
     """, unsafe_allow_html=True)
     st.markdown("""
     <div style="
-        background: rgba(255,255,255,0.88);
-        padding: 2rem;
-        border-radius: 20px;
+        background: rgba(255,255,255,0.90);
+        padding: 2.5rem;
+        border-radius: 24px;
         margin-bottom: 2rem;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 35px rgba(0,0,0,0.08);
         text-align: center;
-        line-height: 1.8;
+        line-height: 1.9;
+        border: 1px solid rgba(176,141,87,0.15);
     ">
 
     <h2 style="
         font-family: Georgia, serif;
-        color: #2c3e50;
-        margin-bottom: 1rem;
+        color: #b08d57;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
     ">
-    ✨Bienvenue à notre mariage✨
+    ✨ À LIRE ATTENTIVEMENT ✨
     </h2>
 
     <p style="
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+        color: #444;
+        margin-bottom: 1.5rem;
+    ">
+    Bienvenue à notre mariage 💍
+    </p>
+
+    <p style="
+        font-size: 1.05rem;
         color: #555;
     ">
-    Nous avons immensément hâte de célébrer ce moment unique avec vous 💍
+    Afin de préparer dans les meilleures conditions le plus beau jour de notre vie,
+    nous avons besoin que vous répondiez à quelques questions ✨
     </p>
 
-    <p style="
-        font-size: 1rem;
-        color: #666;
-        margin-top: 1.5rem;
-    ">
-    Votre présence sera, de loin, le plus beau des cadeaux. ❤️
-    </p>
+    <div style="
+        width: 80px;
+        height: 2px;
+        background: #d4b483;
+        margin: 2rem auto;
+    "></div>
 
     <p style="
-        font-size: 1rem;
-        color: #666;
+        font-size: 1.1rem;
+        color: #444;
     ">
-    Comme nous aimons voyager léger dans nos aventures à venir, 
-    les machines à café, services d’argenterie et autres grands classiques des listes de mariage 
-    risqueraient d’avoir du mal à nous suivre dans nos périples.
+    Votre présence sera notre plus beau cadeau ❤️
     </p>
 
     <p style="
         font-size: 1rem;
         color: #666;
     ">
-    Si vous souhaitez malgré tout nous gâter, une urne sera présente sur le lieu de réception. 
-    Elle contribuera à nos futurs projets et à ce nouveau chapitre de notre vie ✨
+    Quant aux grosses machines à café, services d’argenterie,
+    lave-vaisselle et autres classiques du mariage…
+    ils risqueraient malheureusement de ne pas survivre au voyage en avion ✈️
+    </p>
+
+    <p style="
+        font-size: 1rem;
+        color: #666;
+    ">
+    Si vous souhaitez tout de même nous gâter,
+    une urne de participation financière sera présente sur le lieu de réception
+    afin de contribuer à notre nouvelle aventure ✨
     </p>
 
     </div>
