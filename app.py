@@ -276,15 +276,6 @@ def send_confirmation_email(to_email, prenom, data):
                 Merci d’avoir répondu à notre invitation 🌺
             </p>
 
-            <img src="https://raw.githubusercontent.com/hugotalentino/wedding-rsvp/main/banner2.jpg"
-                style="
-                    width:100%;
-                    max-width:500px;
-                    border-radius:20px;
-                    margin:25px 0;
-                    box-shadow:0 8px 20px rgba(0,0,0,0.15);
-                ">
-
             <p style="font-size:18px;">
                 Bonjour <strong>{prenom}</strong>,
             </p>
@@ -347,6 +338,20 @@ def send_confirmation_email(to_email, prenom, data):
                 </p>
             </div>
 
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center">
+                <img src="https://raw.githubusercontent.com/hugotalentino/wedding-rsvp/main/banner2.jpg"
+                    style="
+                        width:100%;
+                        max-width:500px;
+                        border-radius:20px;
+                        margin:25px 0;
+                        box-shadow:0 8px 20px rgba(0,0,0,0.15);
+                    ">
+                </td>
+            </tr>
+            </table>
         </div>
 
     </body>
