@@ -189,33 +189,131 @@ hr {
 </style>
 """, unsafe_allow_html=True)
 
-def send_confirmation_email(to_email, prenom):
+def send_confirmation_email(to_email, prenom, data):
 
     sender_email = st.secrets["gcp_service_account"]["EMAIL_ADDRESS"]
     sender_password = st.secrets["gcp_service_account"]["EMAIL_PASSWORD"]
 
-    subject = "💍 Confirmation RSVP - Mariage Hugo & Sonate"
+    subject = "💍 Confirmation RSVP — Mariage Hugo & Sonate"
 
-    body = f"""
-Bonjour {prenom} 💕
+    html = f"""
+    <html>
+    <body style="
+        font-family: Georgia, serif;
+        background-color:#f8f5f1;
+        color:#2c3e50;
+        padding:40px;
+    ">
 
-Nous avons bien reçu votre réponse pour notre mariage.
+        <div style="
+            max-width:700px;
+            margin:auto;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        ">
 
-Merci énormément ❤️
+            <h1 style="
+                text-align:center;
+                color:#b08d57;
+                font-size:42px;
+                margin-bottom:10px;
+            ">
+                💍 Hugo & Sonate
+            </h1>
 
-Nous avons hâte de partager ce week-end magique avec vous ✨
+            <p style="
+                text-align:center;
+                font-size:18px;
+                color:#7f8c8d;
+                margin-bottom:40px;
+            ">
+                Merci d’avoir répondu à notre invitation ✨
+            </p>
 
-À très vite,
+            <p style="font-size:18px;">
+                Bonjour <strong>{prenom}</strong>,
+            </p>
 
-Hugo & Sonate
-"""
+            <p style="line-height:1.8;">
+                Nous avons bien reçu votre réponse pour notre mariage et nous sommes très heureux de pouvoir partager ce moment avec vous ❤️
+            </p>
 
-    msg = MIMEMultipart()
+            <hr style="margin:30px 0; border:none; border-top:1px solid #eee;">
+
+            <h2 style="color:#b08d57;">
+                📋 Récapitulatif de votre réponse
+            </h2>
+
+            <ul style="line-height:2;">
+                <li><strong>Présence :</strong> {data["presence"]}</li>
+                <li><strong>Jours présents :</strong> {data["jours_presents"]}</li>
+                <li><strong>Transport :</strong> {data["transport"]}</li>
+                <li><strong>Hébergement :</strong> {data["camping"]}</li>
+            </ul>
+
+            <hr style="margin:30px 0; border:none; border-top:1px solid #eee;">
+
+            <h2 style="color:#b08d57;">
+                📍 Informations pratiques
+            </h2>
+
+            <p style="line-height:1.8;">
+                <strong>Date :</strong> 3 juillet 2027<br>
+                <strong>Lieu :</strong> Château de Bois Charmant
+            </p>
+
+            <p style="line-height:1.8;">
+                Nous vous recommandons fortement une arrivée dès le vendredi afin de profiter pleinement du week-end et de faciliter l’organisation.
+            </p>
+
+            <p style="line-height:1.8;">
+                ⚠️ Nous ne pourrons malheureusement pas assurer les trajets depuis les gares le samedi.
+            </p>
+
+            <hr style="margin:30px 0; border:none; border-top:1px solid #eee;">
+
+            <h2 style="color:#b08d57;">
+                🎨 Dress code
+            </h2>
+
+            <p style="line-height:1.8;">
+                Les tenues entièrement noires sont proscrites 🖤🚫<br>
+                Venez colorés, élégants, lumineux et festifs ✨
+            </p>
+
+            <div style="
+                margin-top:50px;
+                padding:25px;
+                background:#f8f5f1;
+                border-radius:15px;
+                text-align:center;
+            ">
+                <p style="font-size:20px; margin-bottom:10px;">
+                    Nous avons tellement hâte de célébrer avec vous ❤️
+                </p>
+
+                <p style="
+                    color:#7f8c8d;
+                    font-size:16px;
+                ">
+                    Hugo & Sonate
+                </p>
+            </div>
+
+        </div>
+
+    </body>
+    </html>
+    """
+
+    msg = MIMEMultipart("alternative")
     msg["From"] = sender_email
     msg["To"] = to_email
     msg["Subject"] = subject
 
-    msg.attach(MIMEText(body, "plain"))
+    msg.attach(MIMEText(html, "html"))
 
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
