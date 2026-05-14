@@ -191,8 +191,8 @@ hr {
 
 def send_confirmation_email(to_email, prenom):
 
-    sender_email = st.secrets["EMAIL_ADDRESS"]
-    sender_password = st.secrets["EMAIL_PASSWORD"]
+    sender_email = st.secrets["gcp_service_account"]["EMAIL_ADDRESS"]
+    sender_password = st.secrets["gcp_service_account"]["EMAIL_PASSWORD"]
 
     subject = "💍 Confirmation RSVP - Mariage Hugo & Sonate"
 
