@@ -26,6 +26,50 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# Bannière photo
+st.markdown("""
+<style>
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 2rem;
+}
+
+.banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.72);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.banner-text h1 {
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.banner-text p {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 # Style CSS personnalisé
 st.markdown("""
 <style>
@@ -391,6 +435,16 @@ def save_response(data):
 
 def show_rsvp_form():
     """Affiche le formulaire de RSVP"""
+    st.markdown("""
+    <div class="banner-container">
+        <img src="https://raw.githubusercontent.com/hugotalentino/wedding-rsvp/main/banner.jpg">
+        
+        <div class="banner-text">
+            <h1>Hugo & Sonate</h1>
+            <p>3 Juillet 2027 • Château de Bois Charmant</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align:center; padding-top:1rem; padding-bottom:2rem;">
         <div class="title">Hugo & Sonate</div>
