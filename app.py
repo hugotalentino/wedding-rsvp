@@ -572,11 +572,12 @@ def show_rsvp_form():
     <h2 style="
         font-family: Georgia, serif;
         color: #b08d57;
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 1px;
+        font-size: 24px;
+        margin-bottom: 18px;
+        line-height: 1.3;
+        text-transform: uppercase;
     ">
-    À LIRE ATTENTIVEMENT
+    À lire attentivement
     </h2>
 
     <p style="
