@@ -77,6 +77,119 @@ st.markdown("""
 /* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap');
 
+/* ========== APPLE/SAFARI FIXES ========== */
+* {
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body, div, span, p, label, button, input, textarea, select {
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+
+/* Forcer les couleurs de texte partout */
+body, div, p, span, label, li, h1, h2, h3, h4, h5, h6, a {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+/* Inputs et textareas */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    font-size: 16px !important;
+    border: 1px solid #e3dede !important;
+    border-radius: 14px !important;
+    padding: 0.7rem !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="number"]::placeholder,
+textarea::placeholder {
+    color: #999999 !important;
+    -webkit-text-fill-color: #999999 !important;
+    opacity: 1 !important;
+}
+
+/* Boutons */
+button,
+input[type="button"],
+input[type="submit"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #b76e79 !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 50px !important;
+}
+
+/* Labels et text */
+label, .stRadio label, .stCheckbox label {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+/* Streamlit specific selectors */
+.stTextInput input, 
+.stNumberInput input,
+.stTextArea textarea {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+.stSelectbox div {
+    color: #2c3e50 !important;
+}
+
+.stRadio > label {
+    color: #2c3e50 !important;
+}
+
+.stCheckbox > label {
+    color: #2c3e50 !important;
+}
+
+/* Contenu markdown */
+.stMarkdown {
+    color: #2c3e50 !important;
+}
+
+.stMarkdown p, 
+.stMarkdown h1, 
+.stMarkdown h2, 
+.stMarkdown h3,
+.stMarkdown h4,
+.stMarkdown h5,
+.stMarkdown h6 {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+/* Fond blanc pour tous les éléments de formulaire */
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input,
+[data-testid="stTextArea"] textarea,
+[data-testid="stSelectbox"] > div {
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+/* ========== FIN APPLE/SAFARI FIXES ========== */
+
 /* Fond général */
 .stApp {
     background:
@@ -197,6 +310,7 @@ header {
 .stTextArea textarea,
 .stNumberInput input {
     background-color: #ffffff !important;
+    color: #2c3e50 !important;
 }
 
 .stTextInput input:focus,
@@ -210,20 +324,24 @@ header {
 .stRadio label,
 .stCheckbox label {
     font-family: 'Cormorant Garamond', serif;
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
 }
 
 /* Bouton */
 .stButton > button {
     width: 100%;
     border-radius: 50px;
-    border: none;
-    background: linear-gradient(135deg, #b76e79, #d9a5b3);
-    color: white;
+    border: none !important;
+    background: linear-gradient(135deg, #b76e79, #d9a5b3) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
     font-size: 1.1rem;
     padding: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 6px 18px rgba(183,110,121,0.35);
+    -webkit-appearance: none !important;
 }
 
 .stButton > button:hover {
@@ -242,6 +360,72 @@ hr {
 /* Messages */
 .stSuccess {
     border-radius: 18px;
+    color: #ffffff !important;
+}
+
+.stError {
+    color: #ffffff !important;
+}
+
+.stWarning {
+    color: #2c3e50 !important;
+}
+
+.stInfo {
+    color: #2c3e50 !important;
+}
+
+/* Tous les textes d'avertissement/erreur */
+.stAlert p, 
+.stSuccess p,
+.stError p,
+.stWarning p,
+.stInfo p {
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+}
+
+/* Sélecteurs Streamlit avancés */
+[data-testid="stForm"] {
+    color: #2c3e50 !important;
+}
+
+[data-testid="stForm"] label,
+[data-testid="stForm"] p,
+[data-testid="stForm"] div {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+}
+
+.stSelectbox [role="listbox"],
+.stSelectbox [role="option"] {
+    color: #2c3e50 !important;
+    background-color: #ffffff !important;
+}
+
+.stSelectbox [role="option"]:hover {
+    background-color: #f0f0f0 !important;
+    color: #2c3e50 !important;
+}
+
+/* Tous les éléments avec contenu texte */
+.stMarkdownContainer,
+.element-container,
+.block-container {
+    color: #2c3e50 !important;
+}
+
+/* Menu et navigation */
+.stSidebar {
+    background-color: rgba(255,255,255,0.95) !important;
+}
+
+.stSidebar .stMarkdown,
+.stSidebar label,
+.stSidebar p,
+.stSidebar span {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
 }
 
 /* Mobile */
