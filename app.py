@@ -181,6 +181,31 @@ header {
     background-color: rgba(255,255,255,0.9) !important;
 }
 
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input,
+.stSelectbox div[data-baseweb="select"],
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #2c3e50 !important;
+    -webkit-text-fill-color: #2c3e50 !important;
+    font-size: 16px !important;
+    opacity: 1 !important;
+}
+
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input {
+    background-color: #ffffff !important;
+}
+
+.stTextInput input:focus,
+.stTextArea textarea:focus,
+.stNumberInput input:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(183,110,121,0.18) !important;
+}
+
 /* Radio + checkbox */
 .stRadio label,
 .stCheckbox label {
@@ -222,11 +247,52 @@ hr {
 /* Mobile */
 @media (max-width: 768px) {
     .title {
-        font-size: 3.2rem !important;
+        font-size: 2.6rem !important;
+        line-height: 1.05 !important;
+        letter-spacing: 1px;
+    }
+
+    .banner-container {
+        height: 320px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .banner-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .banner-text p {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        line-height: 1.35;
+        margin-bottom: 1.2rem;
     }
 
     .section-card {
         padding: 1.3rem;
+        border-radius: 18px;
+    }
+
+    .stButton > button {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    .main .block-container {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    }
+
+    h1, h2, h3, p, li {
+        word-break: break-word;
+        overflow-wrap: anywhere;
     }
 }
 
