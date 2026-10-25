@@ -945,8 +945,21 @@ def show_rsvp_form():
     submitted = st.button("💌 Envoyer ma réponse", type="primary")
 
     if submitted:
-        if not nom or not prenom or not email:
-            st.error("Merci de remplir tous les champs obligatoires (*)")
+        champs_manquants = [
+            libelle
+            for libelle, valeur in (
+                ("Nom", nom),
+                ("Prénom", prenom),
+                ("Email", email),
+            )
+            if not valeur.strip()
+        ]
+
+        if champs_manquants:
+            st.error(
+                "Merci de remplir les champs obligatoires : "
+                + ", ".join(champs_manquants)
+            )
         else:
             data = {
                 "nom": nom,
