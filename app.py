@@ -543,7 +543,6 @@ def send_confirmation_email(to_email, prenom, data):
             <ul style="line-height:2;">
                 <li><strong>Présence :</strong> {data["presence"]}</li>
                 <li><strong>Jours présents :</strong> {data["jours_presents"]}</li>
-                <li><strong>Transport :</strong> {data["transport"]}</li>
                 <li><strong>Hébergement :</strong> {data["camping"]}</li>
             </ul>
 
@@ -764,52 +763,43 @@ def show_rsvp_form():
     À lire attentivement
     </h2>
 
-    <p style="
-        font-size: 1.15rem;
-        color: #444;
-        margin-bottom: 1.5rem;
-    ">
-    Bienvenue à notre mariage 💍
+    <p style="font-size: 1.15rem; color: #444; margin-bottom: 1.5rem;">
+    Bienvenue à notre mariage ! 💍
     </p>
 
-    <p style="
-        font-size: 1.05rem;
-        color: #555;
-    ">
-    Afin de préparer dans les meilleures conditions le plus beau jour de notre vie,
-    nous avons besoin que vous répondiez à quelques questions 🌿
+    <p style="font-size: 1.05rem; color: #555;">
+    Quelques précisions importantes concernant le déroulement de cette merveilleuse journée :
     </p>
 
-    <div style="
-        width: 80px;
-        height: 2px;
-        background: #d4b483;
-        margin: 2rem auto;
-    "></div>
-
-    <p style="
-        font-size: 1.1rem;
-        color: #444;
-    ">
-    Votre présence sera notre plus beau cadeau ❤️
+    <p style="font-size: 1rem; color: #666;">
+    Bien que nous adorons vos enfants, nous avons décidé de célébrer cette journée entre adultes seulement. 🌿
     </p>
 
-    <p style="
-        font-size: 1rem;
-        color: #666;
-    ">
-    Quant aux grosses machines à café, services d’argenterie,
-    lave-vaisselle et autres classiques du mariage…
-    ils risqueraient malheureusement de ne pas survivre au voyage en avion ✈️
+    <p style="font-size: 1rem; color: #666;">
+    Pour des raisons sécuritaires, les animaux même en laisse, ne sont malheureusement pas admis sur l’ensemble des lieux.
     </p>
 
-    <p style="
-        font-size: 1rem;
-        color: #666;
-    ">
-    Si vous souhaitez tout de même nous gâter,
-    une urne de participation financière sera présente sur le lieu de réception
-    afin de contribuer à notre nouvelle aventure 🌿
+    <p style="font-size: 1rem; color: #666;">
+    Pour toute demande de discours, animation et autre, contactez Leïla afin d’organiser cela en amont
+    (créativité illimitée pour ceux que ça intéresse !) : leila.rebord@free.fr
+    </p>
+
+    <p style="font-size: 1rem; color: #666;">
+    Pour ceux dont le faire part concerne uniquement la cérémonie à 16h, vous pouvez arriver à partir de 14h30
+    si vous avez besoin de planter votre tente et vous installer. Notre équipe de feu sera là pour vous accueillir
+    dans la joie, avec un cocktail de bienvenue.
+    </p>
+
+    <div style="width: 80px; height: 2px; background: #d4b483; margin: 2rem auto;"></div>
+
+    <p style="font-size: 1.1rem; color: #444;">
+    Votre présence sera notre plus beau cadeau ! Mais si vous souhaitez tout de même nous gâter,
+    une urne de participation financière sera présente sur le lieu de réception. ❤️
+    </p>
+
+    <p style="font-size: 1.05rem; color: #555;">
+    Afin de préparer dans les meilleures conditions le plus beau jour de notre vie, nous avons besoin que chacun
+    d’entre vous réponde à quelques questions (1 formulaire par personne).
     </p>
 
     </div>
@@ -858,24 +848,16 @@ def show_rsvp_form():
     st.markdown("---")
     st.markdown("## 📅 Quels jours serez-vous présents ?")
 
-    vendredi = st.checkbox("Vendredi (préparation, répétition, dîner)")
     samedi = st.checkbox("Samedi (mariage 💍)")
     dimanche = st.checkbox("Dimanche (brunch, rangement)")
-    dimanche = st.checkbox("Avant le vendredi")
 
     jours_selectionnes = []
-
-    if vendredi:
-        jours_selectionnes.append("Vendredi")
 
     if samedi:
         jours_selectionnes.append("Samedi")
 
     if dimanche:
         jours_selectionnes.append("Dimanche")
-    
-    if dimanche:
-        jours_selectionnes.append("Avant le vendredi")
 
     st.markdown("---")
     st.markdown("## 🍽️ Allergies")
@@ -887,42 +869,10 @@ def show_rsvp_form():
     
     st.markdown("---")
     st.markdown("## 🚗 Logistique")
-
-    transport = st.selectbox(
-        "Comment viendrez-vous ?",
-        ["Voiture", "Train", "Covoiturage", "Autre"]
-    )
-
-    commentaire_train = ""
-
-    if transport == "Train":
-
-        st.markdown("### 🚆 Arrivée en train")
-
-        jour_arrivee = st.selectbox(
-            "Quel jour arrivez-vous ?",
-            ["Vendredi", "Samedi", "Autre"]
-        )
-
-        heure_arrivee = st.text_input(
-            "Heure d'arrivée",
-            placeholder="Ex : Jeudi 15h42"
-        )
-
-        gare_arrivee = st.text_input(
-            "Gare d'arrivée",
-            placeholder="Ex : Gare de Surgères"
-        )
-
-        commentaire_train = f"{jour_arrivee} - {heure_arrivee} - {gare_arrivee}"
-
-        st.warning(
-            "⚠️ Nous ne pourrons malheureusement pas venir chercher des invités à la gare le jour du mariage. Nous vous recommandons fortement une arrivée le vendredi afin de faciliter l'organisation et les déplacements."
-        )
     
     besoin_hebergement = st.radio(
         "Dormez vous au chateau ?",
-        ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon van", "Oui, les mariés m'on assigné une chambre/cabane"],
+        ["Non, un autre manoir m'attend", "Oui, au camping du chateau", "Oui, j'ai mon van", "Oui, Les mariés m’ont déjà assigné une chambre / cabane"],
         horizontal=True
     )
 
@@ -1005,9 +955,9 @@ def show_rsvp_form():
                 "telephone": telephone,
                 "presence": presence,
                 "jours_presents": ", ".join(jours_selectionnes),
-                "transport": transport,
-                "arrivee_train": "Oui" if transport == "Train" else "Non",
-                "commentaire_train": commentaire_train,
+                "transport": "",
+                "arrivee_train": "",
+                "commentaire_train": "",
                 "camping": besoin_hebergement,
                 "materiel_camping": materiel_camping,
                 "allergie": allergie,
