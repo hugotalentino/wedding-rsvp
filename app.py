@@ -626,15 +626,13 @@ def send_confirmation_email(to_email, prenom, data):
             st.write("Étape 1 : connexion SSL établie")
 
             server.login(sender_email, sender_password)
-            st.write("Étape 2 : authentification réussie")
+            st.write("Étape 2 : authentification Gmail réussie")
 
             server.send_message(msg)
             st.write("Étape 3 : e-mail envoyé avec succès")
 
-        return True
-    except (smtplib.SMTPException, OSError) as e:
+    except Exception as e:
         st.error(f"Erreur email : {type(e).__name__}: {e}")
-        return False
 
 
 def connect_to_google_sheet():
