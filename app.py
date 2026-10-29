@@ -622,14 +622,8 @@ def send_confirmation_email(to_email, prenom, data):
             timeout=30,
             context=ssl.create_default_context()
         ) as server:
-
-            st.write("Étape 1 : connexion SSL établie")
-
             server.login(sender_email, sender_password)
-            st.write("Étape 2 : authentification Gmail réussie")
-
             server.send_message(msg)
-            st.write("Étape 3 : e-mail envoyé avec succès")
 
     except Exception as e:
         st.error(f"Erreur email : {type(e).__name__}: {e}")
