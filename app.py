@@ -14,6 +14,7 @@ import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+import ssl
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -615,37 +616,24 @@ def send_confirmation_email(to_email, prenom, data):
     msg.attach(MIMEText(html, "html"))
 
     try:
-        with smtplib.SMTP("smtp.gmail.com", 587, timeout=30) as server:
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
+        with smtplib.SMTP_SSL(
+            "smtp.gmail.com",
+            465,
+            timeout=30,
+            context=ssl.create_default_context()
+        ) as server:
+
+            st.write("Étape 1 : connexion SSL établie")
 
             server.login(sender_email, sender_password)
+            st.write("Étape 2 : authentification réussie")
 
             server.send_message(msg)
+            st.write("Étape 3 : e-mail envoyé avec succès")
 
-        # Message de succès uniquement si l'envoi a réussi
         return True
-
-    except smtplib.SMTPAuthenticationError:
-        st.error(
-            "Authentification Gmail refusée. "
-            "Vérifie l'adresse et le mot de passe d'application."
-        )
-        return False
-
-    except (TimeoutError, OSError, smtplib.SMTPServerDisconnected) as e:
-        st.error(
-            f"Connexion Gmail interrompue : {type(e).__name__}: {e}"
-        )
-        return False
-
-    except smtplib.SMTPException as e:
-        st.error(f"Erreur SMTP : {type(e).__name__}: {e}")
-        return False
-
-    except Exception as e:
-        st.error(f"Erreur inattendue : {type(e).__name__}: {e}")
+    except (smtplib.SMTPException, OSError) as e:
+        st.error(f"Erreur email : {type(e).__name__}: {e}")
         return False
 
 
