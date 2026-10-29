@@ -615,21 +615,39 @@ def send_confirmation_email(to_email, prenom, data):
     msg.attach(MIMEText(html, "html"))
 
     try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
+        with smtplib.SMTP("smtp.gmail.com", 587, timeout=30) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
 
-        server.login(sender_email, sender_password)
+            server.login(sender_email, sender_password)
 
-        server.sendmail(
-            sender_email,
-            to_email,
-            msg.as_string()
+            server.send_message(msg)
+
+        # Message de succès uniquement si l'envoi a réussi
+        return True
+
+    except smtplib.SMTPAuthenticationError:
+        st.error(
+            "Authentification Gmail refusée. "
+            "Vérifie l'adresse et le mot de passe d'application."
         )
+        return False
 
-        server.quit()
+    except (TimeoutError, OSError, smtplib.SMTPServerDisconnected) as e:
+        st.error(
+            f"Connexion Gmail interrompue : {type(e).__name__}: {e}"
+        )
+        return False
+
+    except smtplib.SMTPException as e:
+        st.error(f"Erreur SMTP : {type(e).__name__}: {e}")
+        return False
 
     except Exception as e:
-        st.error(f"Erreur email : {e}")
+        st.error(f"Erreur inattendue : {type(e).__name__}: {e}")
+        return False
+
 
 def connect_to_google_sheet():
     scope = [
@@ -945,21 +963,8 @@ def show_rsvp_form():
     submitted = st.button("💌 Envoyer ma réponse", type="primary")
 
     if submitted:
-        champs_manquants = [
-            libelle
-            for libelle, valeur in (
-                ("Nom", nom),
-                ("Prénom", prenom),
-                ("Email", email),
-            )
-            if not valeur.strip()
-        ]
-
-        if champs_manquants:
-            st.error(
-                "Merci de remplir les champs obligatoires : "
-                + ", ".join(champs_manquants)
-            )
+        if not nom or not prenom or not email:
+            st.error("Merci de remplir tous les champs obligatoires (*)")
         else:
             data = {
                 "nom": nom,
