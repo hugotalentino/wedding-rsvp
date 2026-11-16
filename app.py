@@ -797,7 +797,7 @@ def show_rsvp_form():
 
     <p style="font-size: 1.05rem; color: #555;">
     Afin de préparer dans les meilleures conditions le plus beau jour de notre vie, nous avons besoin que chacun
-    d’entre vous réponde à quelques questions (1 formulaire par personne).
+    d’entre vous réponde à quelques questions (1 formulaire par personne mentionnée sur le carton d'invitation).
     </p>
 
     </div>
